@@ -9,6 +9,7 @@ export async function insertUser(user) {
     const users = db.collection(COLLECTION.USERS);
     const result = await users.insertOne(user);
     console.log(`User inserted with the following id: ${result.insertedId}`);
+    return result;
   } catch (error) {
     console.error('Failed to insert user:', error);
     return null;
@@ -51,6 +52,7 @@ export async function updateUserByEmail(email, user) {
     const users = db.collection(COLLECTION.USERS);
     const result = await users.updateOne({ email }, { $set: user });
     console.log(`User updated with the following id: ${result.upsertedId}`);
+    return result;
   } catch (error) {
     console.error('Failed to update user:', error);
     return null;
@@ -65,6 +67,7 @@ export async function deleteUserByEmail(email) {
     const users = db.collection(COLLECTION.USERS);
     const result = await users.deleteOne({ email });
     console.log(`User deleted with the following id: ${result.deletedId}`);
+    return result;
   } catch (error) {
     console.error('Failed to delete user:', error);
     return null;
