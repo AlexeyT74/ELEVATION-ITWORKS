@@ -59,6 +59,13 @@
       "request": "launch",
       "type": "node-terminal",
       "cwd": "${workspaceFolder}/classes/mongo"
+    },
+    {
+      "command": "npm run start",
+      "name": "Run Express-Book",
+      "request": "launch",
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/classes/express-book"
     }
   ]
 }
