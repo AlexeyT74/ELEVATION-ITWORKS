@@ -7,6 +7,11 @@ const STATUSES = {
   playerLoose: 'Player LOOSE',
 };
 
+const NAMES = {
+  player: "Player",
+  dealer: "Dealer"
+}
+
 function buildDeck() {
   const fullSuites = ['♠', '♥', '♦', '♣'];
 
@@ -34,12 +39,40 @@ function verify(deck) {
   return countDeck(deck) >= 21;
 }
 
+function Hand({ deck, handName }) {
+  useEffect(() => {
+    console.log(deck.length);
+  });
+
+  if (deck.length == 0) return <></>;
+  else
+    return (
+      <>
+        <h3>Deck {handName}</h3>
+        <ul>
+          {deck.map((card) => (
+            <li key={card.value}>
+              {card.value}
+              {card.type}
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+}
+
 function Desk(props) {
   useEffect(() => {
     console.log(props.status);
   });
 
-  return <h1>Game {props.status}</h1>;
+  return (
+    <>
+      <h1>Game {props.status}</h1>
+      <Hand deck={props.deckPlayer} handName={NAMES.player} />
+      <Hand deck={props.deckDealer} handName={NAMES.dealer} />
+    </>
+  );
 }
 
 function Controls(props) {
@@ -62,9 +95,10 @@ function App() {
     const dealerHand = countDeck(deckDealer);
     if (playerHand == 21) setGameStatus(STATUSES.playerWin);
     else if (playerHand > 21) setGameStatus(STATUSES.playerLoose);
-    else if (gameStatus == STATUSES.stopped) { // Stop Buttom pressed
+    else if (gameStatus == STATUSES.stopped) {
+      // Stop Buttom pressed
       // playerHand < 21
-      if ((dealerHand > 21) || (playerHand > dealerHand)) setGameStatus(STATUSES.playerWin);
+      if (dealerHand > 21 || playerHand > dealerHand) setGameStatus(STATUSES.playerWin);
       else setGameStatus(STATUSES.playerLoose);
     }
     console.log('player', deckPlayer, countDeck(deckPlayer));
@@ -87,7 +121,7 @@ function App() {
 
   return (
     <>
-      <Desk status={gameStatus} />
+      <Desk status={gameStatus} deckPlayer={deckPlayer} deckDealer={deckDealer} />
       <Controls handleDeal={handleDeal} handleStop={handleStop} />
     </>
   );
