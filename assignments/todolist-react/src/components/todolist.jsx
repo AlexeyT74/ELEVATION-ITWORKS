@@ -1,12 +1,11 @@
+import Todo from "./todo";
+
 function Todolist({ todos }) {
   console.log('Todolist', todos);
   return (
     <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>
-          <span>Title: {todo.title}</span>
-          <span>Date: {todo.date}</span>
-        </li>
+      {todos.map((item) => (
+        <Todo todo={item} />
       ))}
     </ul>
   );
