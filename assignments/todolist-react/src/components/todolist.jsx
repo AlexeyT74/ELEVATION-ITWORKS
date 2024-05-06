@@ -4,8 +4,8 @@ function Todolist({ todos }) {
   console.log('Todolist', todos);
   return (
     <ul>
-      {todos.map((item) => (
-        <Todo todo={item} />
+      {todos.map((item, i) => (
+        <Todo todo={item} key={i}/>
       ))}
     </ul>
   );
@@ -21,8 +21,8 @@ export function todoFactory(title) {
   return {
     title,
     id: uuidv4(),
-    done: false,
-    date: Date.now(),
+    // date: Date.now(),
+    date: new Date()
   };
 }
 
