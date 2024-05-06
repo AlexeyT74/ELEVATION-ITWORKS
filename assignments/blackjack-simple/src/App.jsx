@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const STATUSES = {
-  inProgress : "In Progress",
-  stopped : "Stopped",
-  playerWin : "Player WIN",
-  playerLoose : "Player LOOSE"
-}
+  inProgress: 'In Progress',
+  stopped: 'Stopped',
+  playerWin: 'Player WIN',
+  playerLoose: 'Player LOOSE',
+};
 
 function buildDeck() {
   const fullSuites = ['♠', '♥', '♦', '♣'];
@@ -26,10 +26,20 @@ function shuffleDeck(deck) {
   return deck.sort(() => Math.random() - 0.5);
 }
 
+function countDeck(deck) {
+  return deck.reduce((acc, card) => acc + card.value, 0);
+}
+
+function verify(deck) {
+  return countDeck(deck) >= 21;
+}
 
 function Desk(props) {
-  console.log(props.gameStatus);
-  return <h1>Game {props.gameStatus}</h1>;
+  useEffect(() => {
+    console.log(props.status);
+  });
+
+  return <h1>Game {props.status}</h1>;
 }
 
 function Controls(props) {
@@ -42,34 +52,43 @@ function Controls(props) {
 }
 
 function App() {
-
   const [deck, setDeck] = useState(shuffleDeck(buildDeck()));
   const [deckPlayer, setDeckPlayer] = useState([]);
   const [deckDealer, setDeckDealer] = useState([]);
   const [gameStatus, setGameStatus] = useState(STATUSES.inProgress);
-  
-  function handleDeal(){
-    if (gameStatus!=STATUSES.inProgress)
-      return;
+
+  useEffect(() => {
+    const playerHand = countDeck(deckPlayer);
+    const dealerHand = countDeck(deckDealer);
+    if (playerHand == 21) setGameStatus(STATUSES.playerWin);
+    else if (playerHand > 21) setGameStatus(STATUSES.playerLoose);
+    else if (gameStatus == STATUSES.stopped) { // Stop Buttom pressed
+      // playerHand < 21
+      if ((dealerHand > 21) || (playerHand > dealerHand)) setGameStatus(STATUSES.playerWin);
+      else setGameStatus(STATUSES.playerLoose);
+    }
+    console.log('player', deckPlayer, countDeck(deckPlayer));
+    console.log('dealer', deckDealer, countDeck(deckDealer));
+  });
+
+  function handleDeal() {
+    if (gameStatus != STATUSES.inProgress) return;
     const deckCopy = [...deck];
     const card = deckCopy.pop();
     setDeck(deckCopy);
-    setDeckPlayer([...deckPlayer,card]);
-    console.log("deal", deckPlayer);
+    setDeckPlayer([...deckPlayer, card]);
   }
 
-  function handleStop(){
-    if (gameStatus!=STATUSES.inProgress)
-      return;
-    setGameStatus(STATUSES.stopped)
-    setDeckDealer([deck[0],deck[1]])
-    console.log("stop", deckPlayer, deckDealer);
+  function handleStop() {
+    if (gameStatus != STATUSES.inProgress) return;
+    setGameStatus(STATUSES.stopped);
+    setDeckDealer([deck[0], deck[1]]);
   }
 
   return (
     <>
-      <Desk status={gameStatus}/>
-      <Controls handleDeal={handleDeal} handleStop={handleStop}/>
+      <Desk status={gameStatus} />
+      <Controls handleDeal={handleDeal} handleStop={handleStop} />
     </>
   );
 }
