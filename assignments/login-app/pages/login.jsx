@@ -28,10 +28,18 @@ function Login({ handleSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Login</h1>
-      <input type="name" name="name"></input>
-      <input type="password" name="password"></input>
-      <button type="submit">Submit</button>
-      {authError?.length ? <p>{authError}</p> : null}
+      <div className="login">
+        <div>
+          <span>Name: </span>
+          <input type="name" name="name"></input>
+        </div>
+        <div>
+          <span>Password:</span>
+          <input type="password" name="password"></input>
+        </div>
+        <button type="submit">Submit</button>
+        {authError?.length ? <p>{authError}</p> : null}
+      </div>
     </form>
   );
 }

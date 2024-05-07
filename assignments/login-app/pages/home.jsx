@@ -11,7 +11,7 @@ function Home(){
       }
     }, [location?.state?.userName]);
 
-    return <h1>Welcome home, {name}</h1>
+    return <h1>Welcome home, {name}!</h1>
 }
 
 export default Home;
