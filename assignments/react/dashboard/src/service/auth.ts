@@ -1,4 +1,4 @@
-import { Admin } from '../types/Admin';
+import { Admin, AdminUser } from '../types/Admin';
 
 const admins: Admin[] = [
   {
@@ -9,7 +9,7 @@ const admins: Admin[] = [
 ];
 
 // log admin in return admin w/o password
-export const login = async (username: string, password: string): Promise<Omit<Admin, 'password'> | null> => {
+export const login = async (username: string, password: string): Promise<AdminUser | null> => {
   const admin = admins.find((a) => a.username === username && a.password === password);
   if (!admin) {
     return null;

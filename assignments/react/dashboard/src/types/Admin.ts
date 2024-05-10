@@ -8,3 +8,5 @@ export type Admin = {
 };
 
 export type AdminLogin = Omit<Admin, 'id'>;
+
+export type AdminUser = Omit<Admin, 'password'>;
