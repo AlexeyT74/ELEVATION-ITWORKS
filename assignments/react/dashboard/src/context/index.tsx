@@ -26,7 +26,7 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/users');
+      navigate('/view');
     }
   }, [user]);
 

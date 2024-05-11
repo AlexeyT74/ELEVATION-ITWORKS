@@ -1,0 +1,74 @@
+[
+  {
+    "id": "e947b881-8a9a-442c-a843-b29d8c777d4f",
+    "firstName": "John",
+    "lastName": "Doe",
+    "dob": "1990-01-01",
+    "role": "Admin",
+    "email": "john.doe@example.com"
+  },
+  {
+    "id": "2b837d3e-d4c9-422e-9e3d-2f2b8abb90b2",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "dob": "1995-02-15",
+    "role": "Editor",
+    "email": "jane.smith@example.com"
+  },
+  {
+    "id": "f712a1ba-e2ab-4e24-8c7d-b24e87b7e321",
+    "firstName": "Michael",
+    "lastName": "Brown",
+    "dob": "1985-12-24",
+    "role": "User",
+    "email": "michael.brown@example.com"
+  },
+  {
+    "id": "82d1c34a-d02f-4b02-a9a2-a28872deabb1",
+    "firstName": "Sarah",
+    "lastName": "Williams",
+    "dob": "2000-05-08",
+    "role": "Guest",
+    "email": "sarah.williams@example.com"
+  },
+  {
+    "id": "3c4128e7-ae4d-4e1d-b08e-2c8a1b2abb42",
+    "firstName": "David",
+    "lastName": "Miller",
+    "dob": "1978-09-17",
+    "role": "Manager",
+    "email": "david.miller@example.com"
+  },
+  {
+    "id": "17e2d983-778b-4a0b-a982-abb82d4baca1",
+    "firstName": "Jennifer",
+    "lastName": "Garcia",
+    "dob": "1992-10-26",
+    "role": "Developer",
+    "email": "jennifer.garcia@example.com"
+  },
+  {
+    "id": "5d9b18f2-a92b-4a43-9d7c-f2777e2f28e2",
+    "firstName": "William",
+    "lastName": "Jones",
+    "dob": "1980-03-05",
+    "role": "Subscriber",
+    "email": "william.jones@example.com"
+  },
+  {
+    "id": "a08c4b28-e27b-4e43-b044-2f382d82e1b1",
+    "firstName": "Elizabeth",
+    "lastName": "Davis",
+    "dob": "1998-07-11",
+    "role": "Analyst",
+    "email": "elizabeth.davis@example.com"
+  },
+  {
+    "id": "98f72b1a-4f1e-4d7c-b021-7e982f28e222",
+    "firstName": "Matthew",
+    "lastName": "Rodriguez",
+    "dob": "1975-06-20",
+    "role": "Moderator",
+    "email": "matthew.rodriguez@example.com"
+  }
+]
