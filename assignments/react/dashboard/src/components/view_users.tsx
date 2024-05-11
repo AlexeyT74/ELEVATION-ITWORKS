@@ -1,5 +1,5 @@
 import { deleteUserById, getUsers } from '../service/users';
-import { useState, useEffect, MouseEventHandler, useId } from 'react';
+import { useState, useEffect } from 'react';
 import type { User } from '../types/User';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
@@ -47,8 +47,7 @@ function ViewUsers() {
     if (userId) {
       console.log('Delete a user with Id = ', userId);
       try {
-        if (await deleteUserById(userId)){
-          
+        if (await deleteUserById(userId)) {
         }
       } catch (error) {}
     }
@@ -73,7 +72,7 @@ function ViewUsers() {
           <tr className="text-gray-800 text-left border-b border-black">
             <th className="px-4 py-2">First Name</th>
             <th className="px-4 py-2">Last Name</th>
-            <th className="px-4 py-2">Year Of Birth</th>
+            <th className="px-4 py-2">Date Of Birth</th>
             <th className="px-4 py-2">Role</th>
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2"></th>

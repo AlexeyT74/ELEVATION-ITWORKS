@@ -32,14 +32,13 @@ function Login() {
 
   return (
     <>
-      <form onSubmit={submitHandler} className="flex items-center justify-center min-h-screen">
-        <div className="w-2/3 max-w-md bg-white rounded-md shadow-md p-4">
+      <form onSubmit={submitHandler} className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="w-2/3 max-w-md bg-white rounded-md shadow-md p-4 ">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
           <div className="flex flex-col space-y-2">
             <LabelInput sName="name" sLabel="Username:" isPassword={false} />
             <LabelInput sName="password" sLabel="Password:" isPassword={true} />{' '}
             <button
-              // className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
               className="mt-4 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
               type="submit"
             >
