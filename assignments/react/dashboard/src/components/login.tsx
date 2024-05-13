@@ -1,4 +1,3 @@
-// import { AdminLogin } from '../types/Admin';
 import { login } from '../service/auth';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../context';
@@ -6,11 +5,11 @@ import LabelInput from './label_input';
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState('');
-  const { loginUser, logoutUser } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
 
-  async function submitHandler(e) {
+  async function submitHandler(e: React.FormEvent) {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.target as HTMLFormElement);
     const username = formData.get('name') as string;
     const password = formData.get('password') as string;
     if (username.length === 0 || password.length === 0) {

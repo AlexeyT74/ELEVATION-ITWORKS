@@ -6,7 +6,7 @@ import parseDate from '../utils/parseDate';
 
 import data from '../mocks/jsons/data.json';
 
-export const USERS: User[] = data;
+const USERS: User[] = data;
 
 // create a user
 export const createUser = async (user: NewUser): Promise<{ id: string } | { error: string }> => {

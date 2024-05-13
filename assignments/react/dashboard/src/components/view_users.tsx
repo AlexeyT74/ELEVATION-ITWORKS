@@ -1,23 +1,24 @@
-import { deleteUserById, getUsers } from '../service/users';
-import { useState, useEffect } from 'react';
-import type { User } from '../types/User';
+import { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { UsersContext } from '../context/users';
 
 function ViewUsers() {
-  const [users, setUsers] = useState<User[]>([]);
-  // const [selectedRow, setSelectedRow] = useState(null);
+  // const [selectedRow, setSelectedRow] = useState(-1);
+  const { users, removeUser } = useContext(UsersContext);
 
-  function IconButton({
-    icon,
-    onClick,
-    userId,
-  }: {
+  // useEffect(() => {
+  //   console.log('ViewUsers ', users);
+  // }, [users]);
+
+  type IconButtonProp = {
     icon: IconProp;
     onClick: React.MouseEventHandler<HTMLButtonElement>;
     userId: string;
-  }) {
+  };
+
+  function IconButton({ icon, onClick, userId }: IconButtonProp) {
     return (
       <button
         onClick={onClick}
@@ -29,28 +30,9 @@ function ViewUsers() {
     );
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getUsers(1, 100);
-        setUsers(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   async function deleteHandler(e: React.MouseEvent<HTMLButtonElement>) {
     const userId = e.currentTarget.getAttribute('id');
-    if (userId) {
-      console.log('Delete a user with Id = ', userId);
-      try {
-        if (await deleteUserById(userId)) {
-        }
-      } catch (error) {}
-    }
+    if (userId) removeUser(userId);
     return;
   }
 

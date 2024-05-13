@@ -11,9 +11,16 @@ type ContextUser = {
 };
 
 const initialUserState: AdminUser = { username: 'Guest', id: '0' };
-export const AuthContext = createContext();
+const initialContextUser: ContextUser = {
+  user: initialUserState,
+  isAuthenticated: false,
+  loginUser: (_) => {},
+  logoutUser: () => {},
+};
 
-export default function AuthProvider({ children }) {
+export const AuthContext = createContext<ContextUser>(initialContextUser);
+
+export default function AuthProvider({ children }: { children: React.ReactElement[] }) {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(initialUserState);

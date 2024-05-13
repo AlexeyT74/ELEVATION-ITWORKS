@@ -6,20 +6,23 @@ import Layout from './components/layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthProvider from './context';
 import CreateUser from './components/create';
+import UsersProvider from './context/users';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Layout />}>
-            <Route index element={<ViewUsers />} />
-            <Route path="edit" element={<EditUser />} />
-            <Route path="view" element={<ViewUsers />} />
-            <Route path="create" element={<CreateUser />} />
-          </Route>
-        </Routes>
+        <UsersProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Layout />}>
+              <Route index element={<ViewUsers />} />
+              <Route path="edit" element={<EditUser />} />
+              <Route path="view" element={<ViewUsers />} />
+              <Route path="create" element={<CreateUser />} />
+            </Route>
+          </Routes>
+        </UsersProvider>
       </AuthProvider>
     </BrowserRouter>
   );

@@ -1,33 +1,28 @@
-import { useState } from 'react';
-import { createUser } from '../service/users';
+import { useContext, useState } from 'react';
 import LabelInput from './label_input';
+import { NewUser } from '../types/User';
+import { UsersContext } from '../context/users';
+import { useNavigate } from 'react-router-dom';
 
 function CreateUser() {
   const [errorMessage, setErrorMessage] = useState('');
+  const { addUser } = useContext(UsersContext);
+  const navigate = useNavigate();
 
-  async function submitHandler(e) {
+  async function submitHandler(e: React.FormEvent) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const newUser = {
+    const formData = new FormData(e.target as HTMLFormElement);
+    const newUser: NewUser = {
       firstName: formData.get('firstName') as string,
       lastName: formData.get('lastName') as string,
       dob: formData.get('dob') as string,
       email: formData.get('email') as string,
       role: formData.get('role') as string,
     };
-
-    try {
-      const result = await createUser(newUser);
-      if ('id' in result) {
-        setErrorMessage('');
-      } else {
-        //error
-        setErrorMessage(result.error);
-      }
-    } catch (error) {
-      console.log('??', error);
-      setErrorMessage(error as string);
-    }
+    const err = await addUser(newUser);
+    setErrorMessage(err);
+    if (err.length===0)
+      navigate("/view")
   }
 
   return (
