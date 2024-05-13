@@ -1,4 +1,4 @@
-import { createUser, deleteUserById, getUsers } from '../service/users';
+import { createUser, deleteUserById, getUsers, updateUserById, validateUserData } from '../service/users';
 import type { NewUser, User } from '../types/User';
 import { createContext, useState, useEffect } from 'react';
 
@@ -6,24 +6,20 @@ type ContextUsers = {
   users: User[];
   removeUser: (userId: string) => void;
   addUser: (newUser: NewUser) => Promise<string>;
-  updateUser: (id: string, newUser: User) => void;
+  updateUser: (id: string, updatedUser: NewUser) => Promise<string>;
+  fetchUser: (id: string) => User | undefined;
 };
 const initialContextUser: ContextUsers = {
   users: [],
   removeUser: (_) => {},
-  addUser: (_) => {
-    return new Promise((resolve, _) => resolve(''));
-  },
-  updateUser: (_1, _2) => {},
+  addUser: async (_) => '',
+  updateUser: async (_1, _2) => '',
+  fetchUser: (_) => undefined,
 };
 export const UsersContext = createContext<ContextUsers>(initialContextUser);
 
 export default function UsersProvider({ children }: { children: React.ReactElement[] }) {
   const [users, setUsers] = useState<User[]>([]);
-
-  // useEffect(() => {
-  //   console.log('Context ', users);
-  // }, [users]);
 
   async function removeUser(userId: string) {
     try {
@@ -53,7 +49,24 @@ export default function UsersProvider({ children }: { children: React.ReactEleme
     return res;
   }
 
-  function updateUser(id: string, newUser: User) {}
+  function fetchUser(id: string): User | undefined {
+    return users.find((user) => user.id === id);
+  }
+
+  async function updateUser(id: string, user: NewUser) {
+    try {
+      validateUserData(user);
+      const result = await updateUserById(id, user);
+      if (result) {
+        const updatedUser: User = { ...user, id };
+        const updatedUsers = users.map<User>((u) => (u.id === id ? updatedUser : u));
+        setUsers(updatedUsers);
+      }
+    } catch (error) {
+      return (error as Error).message;
+    }
+    return '';
+  }
 
   const fetchData = async () => {
     try {
@@ -69,5 +82,9 @@ export default function UsersProvider({ children }: { children: React.ReactEleme
     fetchData();
   }, []);
 
-  return <UsersContext.Provider value={{ users, removeUser, addUser, updateUser }}>{children}</UsersContext.Provider>;
+  return (
+    <UsersContext.Provider value={{ users, removeUser, addUser, updateUser, fetchUser }}>
+      {children}
+    </UsersContext.Provider>
+  );
 }

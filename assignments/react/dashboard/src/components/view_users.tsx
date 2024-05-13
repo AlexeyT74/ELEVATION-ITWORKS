@@ -1,12 +1,14 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { UsersContext } from '../context/users';
+import { useNavigate } from 'react-router-dom';
 
 function ViewUsers() {
   // const [selectedRow, setSelectedRow] = useState(-1);
   const { users, removeUser } = useContext(UsersContext);
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   console.log('ViewUsers ', users);
@@ -39,7 +41,11 @@ function ViewUsers() {
   function editHandler(e: React.MouseEvent<HTMLButtonElement>) {
     const userId = e.currentTarget.getAttribute('id');
     if (userId) {
-      console.log('Edit a user with Id = ', userId);
+      navigate('/edit', {
+        state: {
+          userId: userId,
+        },
+      });
     }
     return;
   }

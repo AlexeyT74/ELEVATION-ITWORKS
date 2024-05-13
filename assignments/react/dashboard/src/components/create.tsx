@@ -28,7 +28,7 @@ function CreateUser() {
   return (
     <form onSubmit={submitHandler} className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-2/3 max-w-md bg-white rounded-md shadow-md p-4">
-        <h1 className="text-3xl font-bold pb-3">New user</h1>
+        <h1 className="text-3xl font-bold pb-3">New User</h1>
         <div className="flex flex-col space-y-2">
           <LabelInput sLabel="First Name:" sName="firstName" />
           <LabelInput sLabel="Last Name:" sName="lastName" />
