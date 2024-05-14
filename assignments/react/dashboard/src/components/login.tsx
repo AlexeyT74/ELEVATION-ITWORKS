@@ -24,7 +24,6 @@ function Login() {
       }
       loginUser(result);
     } catch (error) {
-      console.error('??', error);
       setErrorMessage(error as string);
     }
   }
@@ -35,7 +34,7 @@ function Login() {
         <div className="w-2/3 max-w-md bg-white rounded-md shadow-md p-4 ">
           <h1 className="text-3xl font-bold pb-3">Admin Dashboard</h1>
           <div className="flex flex-col space-y-2">
-            <LabelInput sName="name" sLabel="Username:"/>
+            <LabelInput sName="name" sLabel="Username:" />
             <LabelInput sName="password" sLabel="Password:" bType="password" />{' '}
             <button
               className="mt-4 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"

@@ -27,9 +27,10 @@ function Layout() {
                 className={`text-white px-3 py-2 rounded-md ${selectedRow ? 'hover:bg-gray-700' : 'disabled'}`}
                 to="/edit"
                 onClick={(e) => {
-                  if (selectedRow === null) e.preventDefault();
+                  // Prevents edit of unselected row
+                  if (!selectedRow) e.preventDefault();
                 }}
-                state = {{ userId: selectedRow }}
+                state={{ userId: selectedRow }}
               >
                 Edit a user
               </Link>

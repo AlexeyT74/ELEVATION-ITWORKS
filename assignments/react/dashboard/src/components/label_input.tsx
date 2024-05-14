@@ -7,6 +7,7 @@ type typeLabelInput = {
   sValue?: string;
 };
 
+// General pair of Label and Input usied in a project for styling
 function LabelInput({ sName, sLabel, bType = 'text', sValue = undefined }: typeLabelInput) {
   const [valueInput, setValueInput] = useState<string>();
 

@@ -8,8 +8,8 @@ type ContextUsers = {
   addUser: (newUser: NewUser) => Promise<string>;
   updateUser: (id: string, updatedUser: NewUser) => Promise<string>;
   fetchUser: (id: string) => User | undefined;
-  selectedRow: string|undefined|null;
-  setSelectedRow: (_: string|undefined|null) => void;
+  selectedRow: string | undefined | null;
+  setSelectedRow: (_: string | undefined | null) => void;
 };
 const initialContextUser: ContextUsers = {
   users: [],
@@ -18,7 +18,7 @@ const initialContextUser: ContextUsers = {
   updateUser: async (_1, _2) => '',
   fetchUser: (_) => undefined,
   selectedRow: null,
-  setSelectedRow: () =>{}
+  setSelectedRow: () => {},
 };
 export const UsersContext = createContext<ContextUsers>(initialContextUser);
 
@@ -30,7 +30,6 @@ export default function UsersProvider({ children }: { children: React.ReactEleme
     try {
       if (await deleteUserById(userId)) {
         setUsers(users.filter((item) => item.id != userId));
-        console.log('Delete User with Id=', userId);
       }
     } catch (error) {}
   }
@@ -42,13 +41,11 @@ export default function UsersProvider({ children }: { children: React.ReactEleme
       if ('id' in result) {
         const newUserWithId: User = { ...newUser, id: result.id };
         setUsers([...users, newUserWithId]);
-        console.log('Add User: ', newUserWithId);
       } else {
         //error
         res = result.error;
       }
     } catch (error) {
-      console.log('??', error);
       res = error as string;
     }
     return res;
@@ -78,12 +75,10 @@ export default function UsersProvider({ children }: { children: React.ReactEleme
       const data = await getUsers(1, 10);
       setUsers(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
     }
   };
 
   useEffect(() => {
-    console.log('User data initialized from scratch');
     fetchData();
   }, []);
 

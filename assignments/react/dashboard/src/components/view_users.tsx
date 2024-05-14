@@ -47,7 +47,6 @@ function ViewUsers() {
 
   function trClickHanlder(e: React.MouseEvent<HTMLTableRowElement>){
     const id = e.currentTarget.getAttribute("id");
-    console.log("Table row clicked ", id);
     setSelectedRow(id)
   }
 
