@@ -1,9 +1,11 @@
 import { Outlet, Link } from 'react-router-dom';
 import { AuthContext } from '../context';
 import { useContext } from 'react';
+import { UsersContext } from '../context/users';
 
 function Layout() {
   const { logoutUser } = useContext(AuthContext);
+  const { selectedRow } = useContext(UsersContext);
 
   return (
     <>
@@ -21,7 +23,14 @@ function Layout() {
               </Link>
             </li>
             <li>
-              <Link className="text-white px-3 py-2 rounded-md hover:bg-gray-700" to="/edit">
+              <Link
+                className={`text-white px-3 py-2 rounded-md ${selectedRow ? 'hover:bg-gray-700' : 'disabled'}`}
+                to="/edit"
+                onClick={(e) => {
+                  if (selectedRow === null) e.preventDefault();
+                }}
+                state = {{ userId: selectedRow }}
+              >
                 Edit a user
               </Link>
             </li>

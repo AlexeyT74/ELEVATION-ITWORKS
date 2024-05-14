@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
@@ -6,13 +6,8 @@ import { UsersContext } from '../context/users';
 import { useNavigate } from 'react-router-dom';
 
 function ViewUsers() {
-  // const [selectedRow, setSelectedRow] = useState(-1);
-  const { users, removeUser } = useContext(UsersContext);
+  const { users, removeUser, selectedRow, setSelectedRow } = useContext(UsersContext);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   console.log('ViewUsers ', users);
-  // }, [users]);
 
   type IconButtonProp = {
     icon: IconProp;
@@ -50,8 +45,15 @@ function ViewUsers() {
     return;
   }
 
-  // onMouseOver={handleInputMouseOver}
-  // onMouseOut={handleInputMouseOut}
+  function trClickHanlder(e: React.MouseEvent<HTMLTableRowElement>){
+    const id = e.currentTarget.getAttribute("id");
+    console.log("Table row clicked ", id);
+    setSelectedRow(id)
+  }
+
+  useEffect(()=>{
+    setSelectedRow(null);
+  },[])
 
   return (
     <>
@@ -68,7 +70,8 @@ function ViewUsers() {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id} id={user.id} className="border-b border-gray-300 cursor-pointer hover:bg-gray-100">
+            <tr key={user.id} id={user.id} onClick={trClickHanlder} 
+            className={`${selectedRow === user.id ? "bg-gray-300" : 'hover:bg-gray-100'} border-b border-gray-300 cursor-pointer`}>
               <td className="px-4 py-2">{user.firstName}</td>
               <td className="px-4 py-2">{user.lastName}</td>
               <td className="px-4 py-2">{user.dob}</td>

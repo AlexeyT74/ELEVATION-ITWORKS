@@ -8,6 +8,8 @@ type ContextUsers = {
   addUser: (newUser: NewUser) => Promise<string>;
   updateUser: (id: string, updatedUser: NewUser) => Promise<string>;
   fetchUser: (id: string) => User | undefined;
+  selectedRow: string|undefined|null;
+  setSelectedRow: (_: string|undefined|null) => void;
 };
 const initialContextUser: ContextUsers = {
   users: [],
@@ -15,11 +17,14 @@ const initialContextUser: ContextUsers = {
   addUser: async (_) => '',
   updateUser: async (_1, _2) => '',
   fetchUser: (_) => undefined,
+  selectedRow: null,
+  setSelectedRow: () =>{}
 };
 export const UsersContext = createContext<ContextUsers>(initialContextUser);
 
 export default function UsersProvider({ children }: { children: React.ReactElement[] }) {
   const [users, setUsers] = useState<User[]>([]);
+  const [selectedRow, setSelectedRow] = useState<string>();
 
   async function removeUser(userId: string) {
     try {
@@ -83,7 +88,7 @@ export default function UsersProvider({ children }: { children: React.ReactEleme
   }, []);
 
   return (
-    <UsersContext.Provider value={{ users, removeUser, addUser, updateUser, fetchUser }}>
+    <UsersContext.Provider value={{ users, removeUser, addUser, updateUser, fetchUser, selectedRow, setSelectedRow }}>
       {children}
     </UsersContext.Provider>
   );
