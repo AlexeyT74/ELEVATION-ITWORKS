@@ -12,5 +12,7 @@ export type User = {
 // a new user type with firstname,last name, email and password and dob
 export type NewUser = Omit<User, 'id'>;
 
-// a Pick with usernmae and password
-// export type UserLogin = Pick<User, 'email' | 'password'>;
+export type UserKey = keyof NewUser;
+
+export type SortOrder = 'asc' | 'desc'
+

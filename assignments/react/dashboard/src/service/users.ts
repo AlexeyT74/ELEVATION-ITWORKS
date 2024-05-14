@@ -1,5 +1,4 @@
 import type { NewUser, User } from '../types/User';
-// import { encryptStr } from '../utils/encryptStr';
 import makeUUID from '../utils/makeUUID';
 import parseDate from '../utils/parseDate';
 // MOCK METHODS
