@@ -82,7 +82,9 @@ function ViewUsers() {
   }
 
   function trClickHanlder(e: React.MouseEvent<HTMLTableRowElement>) {
-    const id = e.currentTarget.getAttribute('id') as React.SetStateAction<string | undefined>;
+    const id = e.currentTarget.getAttribute('id')
+    if(!id) return
+    //  as React.SetStateAction<string | undefined>;
     setSelectedRow(id);
   }
 
@@ -91,7 +93,7 @@ function ViewUsers() {
   }, []);
 
   return (
-    <>
+    // {<>}
       <table className="table-auto w-11/12 mx-auto  mt-3">
         <thead className="bg-white border-b-gray-200">
           <tr className="text-gray-800 text-left border-b border-black">
@@ -126,7 +128,7 @@ function ViewUsers() {
           ))}
         </tbody>
       </table>
-    </>
+    // </>
   );
 }
 

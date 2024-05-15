@@ -12,7 +12,7 @@ interface IUserFormProps {
 // General User form for Edit and Create functionality
 function UserForm({ title, user = undefined, formHandler, errorMessage }: IUserFormProps) {
   return (
-    <form onSubmit={formHandler} className="flex items-center justify-center min-h-screen bg-gray-100">
+    <form onSubmit={formHandler} className="flex items-center justify-center grow bg-gray-100">
       <div className="w-2/3 max-w-md bg-white rounded-md shadow-md p-4">
         <h1 className="text-3xl font-bold pb-3">{title}</h1>
         <div className="flex flex-col space-y-2">

@@ -73,14 +73,14 @@ export default function UsersProvider({ children }: { children: React.ReactEleme
     return '';
   }
 
-  const fetchData = async () => {
-    try {
-      const data = await getUsers(1, 10);
-      setUsers(data);
-    } catch (error) {}
-  };
-
+  
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUsers(1, 10);
+        setUsers(data);
+      } catch (error) {}
+    };
     fetchData();
   }, []);
 
