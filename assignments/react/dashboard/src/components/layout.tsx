@@ -2,10 +2,25 @@ import { Outlet, Link } from 'react-router-dom';
 import { AuthContext } from '../context';
 import { useContext } from 'react';
 import { UsersContext } from '../context/users';
+import i18n from "i18next";
+import { useTranslation } from 'react-i18next';
+import enJSON from '../i18n/en.json'
+import ruJSON from '../i18n/ru.json'
 
 function Layout() {
   const { logoutUser } = useContext(AuthContext);
   const { selectedRow } = useContext(UsersContext);
+  
+  i18n.use
+  (initReactI18next).init({
+    resources: {
+      en: { ...enJSON },
+      pt: { ...ruJSON },
+    },
+    lng: "en",
+  });
+
+  const { t, i18n: {changeLanguage, language} } = useTranslation();
 
   return (
     <>
