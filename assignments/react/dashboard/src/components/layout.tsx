@@ -2,25 +2,21 @@ import { Outlet, Link } from 'react-router-dom';
 import { AuthContext } from '../context';
 import { useContext } from 'react';
 import { UsersContext } from '../context/users';
-import i18n from "i18next";
-import { useTranslation } from 'react-i18next';
-import enJSON from '../i18n/en.json'
-import ruJSON from '../i18n/ru.json'
+import { useTranslation } from 'react-i18next'
+// import { useScopedTranslation } from './hooks/useScopedTranslation';
 
 function Layout() {
   const { logoutUser } = useContext(AuthContext);
   const { selectedRow } = useContext(UsersContext);
   
-  i18n.use
-  (initReactI18next).init({
-    resources: {
-      en: { ...enJSON },
-      pt: { ...ruJSON },
-    },
-    lng: "en",
-  });
+  // const { t, i18n: {changeLanguage, language} } = useTranslation();
 
-  const { t, i18n: {changeLanguage, language} } = useTranslation();
+  const { t, i18n } = useTranslation('translation', {
+    keyPrefix: 'navigation',
+  });
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <>
@@ -29,12 +25,12 @@ function Layout() {
           <ul className="flex space-x-4">
             <li>
               <Link className="text-white px-3 py-2 rounded-md hover:bg-gray-600" to="/view">
-                View Users
+              {t('view')}
               </Link>
             </li>
             <li>
               <Link className="text-white px-3 py-2 rounded-md hover:bg-gray-700" to="/create">
-                Create a user
+              {t('create')}
               </Link>
             </li>
             <li>
@@ -47,10 +43,13 @@ function Layout() {
                 }}
                 state={{ userId: selectedRow }}
               >
-                Edit a user
+                {t('edit')}
               </Link>
             </li>
           </ul>
+          <button className="text-gray-200" onClick={() => changeLanguage('en')}>English</button>
+          <button className="text-gray-200" onClick={() => changeLanguage('he')}>עברית</button>
+          <button className="text-gray-200" onClick={() => changeLanguage('ru')}>Русский</button>
           <button
             className="hover:bg-red-500 border border-red-400 text-gray-200 px-2 py-1 rounded-md focus:outline-none"
             onClick={logoutUser}
