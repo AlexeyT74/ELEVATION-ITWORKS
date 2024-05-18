@@ -7,11 +7,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthProvider from './context';
 import CreateUser from './components/create';
 import UsersProvider from './context/users';
-import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
+import i18next from 'i18next';
 
-i18n
+i18next
   .use(HttpApi)
   .use(initReactI18next)
   .init({
@@ -24,6 +24,11 @@ i18n
       loadPath: '/i18n/{{lng}}/{{ns}}.json',
     },
   });
+
+  i18next.addResourceBundle('ru', 'translation', {
+    key: 'navigation'
+  });
+;
 
 function App() {
   return (
