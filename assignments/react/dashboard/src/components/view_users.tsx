@@ -8,6 +8,7 @@ import { faArrowUpWideShort } from '@fortawesome/free-solid-svg-icons';
 import { USER_FIELD } from '../utils/constants';
 import { SortOrder, UserKey } from '../types/User';
 import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons/faArrowDownShortWide';
+import { useTranslation } from 'react-i18next';
 
 function ViewUsers() {
   const { users, removeUser, selectedRow, setSelectedRow, sortData } = useContext(UsersContext);
@@ -92,16 +93,20 @@ function ViewUsers() {
     setSelectedRow(undefined);
   }, []);
 
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'table',
+  });
+
   return (
     // {<>}
       <table className="table-auto w-11/12 mx-auto  mt-3">
         <thead className="bg-white border-b-gray-200">
           <tr className="text-gray-800 text-left border-b border-black">
-            <TableHeaderSort sLabel={USER_FIELD.firstName} sName="firstName" />
-            <TableHeaderSort sLabel={USER_FIELD.lastName} sName="lastName" />
-            <TableHeaderSort sLabel={USER_FIELD.dob} sName="dob" />
-            <TableHeaderSort sLabel={USER_FIELD.role} sName="role" />
-            <TableHeaderSort sLabel={USER_FIELD.email} sName="email" />
+            <TableHeaderSort sLabel={t("firstName")} sName="firstName" />
+            <TableHeaderSort sLabel={t("lastName")} sName="lastName" />
+            <TableHeaderSort sLabel={t("dob")} sName="dob" />
+            <TableHeaderSort sLabel={t("role")} sName="role" />
+            <TableHeaderSort sLabel={t("email")} sName="email" />
             <th className="px-4 py-2"></th>
           </tr>
         </thead>

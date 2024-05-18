@@ -1,0 +1,25 @@
+{
+  "navigation": {
+    "view": "View Users",
+    "create": "Create A User",
+    "edit": "Edit A User",
+    "logout": "Logout"
+  },
+  "table": {
+    "firstName": "First Name",
+    "lastName":	"Last Name",
+    "dob":	"Date Of Birth",
+    "role":	"Role",
+    "email":	"Email"
+  },
+  "userForm": {
+    "firstName": "First Name:",
+    "lastName":	"Last Name:",
+    "dob":	"Date Of Birth:",
+    "role":	"Role:",
+    "email":	"Email:",
+    "create": "Create User",
+    "edit": "Edit User",
+    "confirm": "Confirm"
+  }
+}

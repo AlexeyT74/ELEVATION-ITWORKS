@@ -1,8 +1,0 @@
-{
-  "navigation": {
-    "view": "View Users",
-    "create": "Craete A User",
-    "edit": "Edit A User",
-    "logout": "Logout"
-  }
-}

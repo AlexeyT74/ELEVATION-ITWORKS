@@ -37,7 +37,7 @@ function EditUser() {
     if (err.length === 0) navigate('/view');
   }
 
-  return <UserForm user={user} formHandler={submitHandler} title="Edit User" errorMessage={errorMessage} />;
+  return <UserForm user={user} formHandler={submitHandler} title="edit" errorMessage={errorMessage} />;
 }
 
 export default EditUser;

@@ -27,7 +27,7 @@ function CreateUser() {
   // Prevents going to Edit right from Create via navigation
   useEffect(()=> setSelectedRow(undefined),[])
 
-  return <UserForm formHandler={submitHandler} title="Create User" errorMessage={errorMessage}/>;
+  return <UserForm formHandler={submitHandler} title="create" errorMessage={errorMessage}/>;
 }
 
 export default CreateUser;

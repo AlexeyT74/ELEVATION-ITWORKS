@@ -3,26 +3,29 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context';
 import LabelInput from './label_input';
 import { useTranslation } from 'react-i18next';
+import LanguageSelector from './language_selector';
 
 function Login() {
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("err_empty");
   const { loginUser } = useContext(AuthContext);
 
-  const { t } = useTranslation('login');
+  const { t, i18n } = useTranslation('login');
+
+  document.body.dir = i18n.dir();
 
   async function submitHandler(e: React.FormEvent) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const username = formData.get('name') as string;
     const password = formData.get('password') as string;
-    if (username.length === 0 || password.length === 0) {
-      setErrorMessage("Username and password can't be empty");
+    if (username.trim().length === 0 || password.trim().length === 0) {
+      setErrorMessage('err_not_empty');
       return;
     }
     try {
       const result = await login(username, password);
       if (result === null) {
-        setErrorMessage('Username and password do not match');
+        setErrorMessage('err_not_match');
         return;
       }
       loginUser(result);
@@ -45,10 +48,11 @@ function Login() {
             >
                {t('submit')}
             </button>
-            {errorMessage ? <p className="text-sm font-medium text-red-700">{errorMessage}</p> : ''}
+            {errorMessage ? <p className="text-sm font-medium text-red-700">{t(errorMessage)}</p> : ''}
           </div>
         </div>
       </form>
+      <LanguageSelector />
     </>
   );
 }

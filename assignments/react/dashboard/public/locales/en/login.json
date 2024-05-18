@@ -4,5 +4,6 @@
     "password": "Password:",
     "submit": "Login",
     "err_not_empty": "Username and password can't be empty",
-    "err_not_match": "Username and password do not match"
+    "err_not_match": "Username and password do not match",
+    "err_empty": ""
   }
