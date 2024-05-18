@@ -8,11 +8,11 @@ import AuthProvider from './context';
 import CreateUser from './components/create';
 import UsersProvider from './context/users';
 import { initReactI18next } from 'react-i18next';
-import HttpApi from 'i18next-http-backend';
+import Backend from 'i18next-http-backend';
 import i18next from 'i18next';
 
 i18next
-  .use(HttpApi)
+  .use(Backend)
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
@@ -21,12 +21,8 @@ i18next
       escapeValue: false, // not needed for react as it escapes by default
     },
     backend: {
-      loadPath: '/i18n/{{lng}}/{{ns}}.json',
+      loadPath: '/localization/{{lng}}/{{ns}}.json',
     },
-  });
-
-  i18next.addResourceBundle('ru', 'translation', {
-    key: 'navigation'
   });
 ;
 
