@@ -5,7 +5,6 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { UsersContext } from '../context/users';
 import { useNavigate } from 'react-router-dom';
 import { faArrowUpWideShort } from '@fortawesome/free-solid-svg-icons';
-import { USER_FIELD } from '../utils/constants';
 import { SortOrder, UserKey } from '../types/User';
 import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons/faArrowDownShortWide';
 import { useTranslation } from 'react-i18next';

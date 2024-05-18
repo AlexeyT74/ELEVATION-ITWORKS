@@ -26,6 +26,10 @@ i18next
   });
 ;
 
+function EmptyComponent(){
+  return <div></div>
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -40,7 +44,9 @@ function App() {
               <Route path="create" element={<CreateUser />} />
             </Route>
           </Routes>
+          <EmptyComponent />
         </UsersProvider>
+        <EmptyComponent />
       </AuthProvider>
     </BrowserRouter>
   );
