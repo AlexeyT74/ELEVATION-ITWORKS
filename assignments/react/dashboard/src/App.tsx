@@ -8,11 +8,11 @@ import AuthProvider from './context';
 import CreateUser from './components/create';
 import UsersProvider from './context/users';
 import { initReactI18next } from 'react-i18next';
-import Backend from 'i18next-http-backend';
+import HttpApi from 'i18next-http-backend';
 import i18next from 'i18next';
 
 i18next
-  .use(Backend)
+  .use(HttpApi)
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
@@ -21,7 +21,7 @@ i18next
       escapeValue: false, // not needed for react as it escapes by default
     },
     backend: {
-      loadPath: '/localization/{{lng}}/{{ns}}.json',
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
   });
 ;
