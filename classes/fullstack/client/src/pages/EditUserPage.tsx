@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useUser } from '../context/UserContext';
+// import { useUser } from '../context/UserContext';
 import { useTranslation } from 'react-i18next';
 import InputField from '../components/InputField';
+import { useAppDispatch, useAppSelector } from '../store';
+
 
 const EditUserPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { getUserById, updateUser } = useUser();
+  // const { getUserById, updateUser } = useUser();
+  const dispatch = useAppDispatch();
+  const currentUser = useAppSelector((state) => state.users.currentUser);
+ 
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
