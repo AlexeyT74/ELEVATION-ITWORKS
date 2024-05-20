@@ -28,10 +28,10 @@ export const usersSlice = createSlice({
     setUsers(state: UsersState, action: PayloadAction<User[]>) {
       state.users = action.payload
     },
-    createUser(state, action) {
+    createUser(state: UsersState, action: PayloadAction<User>) {
       state.users.push(action.payload)
     },
-    updateUser(state, action) {
+    updateUser(state: UsersState, action: PayloadAction<User>) {
       const targetUserIdx = state.users.findIndex(user => user.id === action.payload.id)
       if (targetUserIdx === -1) throw new Error('invalid Id on update')
       state.users[targetUserIdx] = action.payload

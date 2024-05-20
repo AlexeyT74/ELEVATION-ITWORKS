@@ -4,14 +4,10 @@ import makeUUID from '../utils/makeUUID';
 import parseDate from '../utils/parseDate';
 import usersData from '../mocks/jsons/users.json';
 // MOCK METHODS
-
-
 let USERS: User[] = [];
 
-
-
 export const initializeUsers = async () => {
-  USERS = usersData;
+  USERS = [...usersData];
   return USERS;
 };
 
@@ -27,8 +23,7 @@ export const createUser = async (user: CreateUser): Promise<{ id: string } | { e
     if (!validDate) {
       throw new Error('Invalid dob');
     }
-    const newUser = user as User;
-    newUser.id = makeUUID();
+    const newUser: User = { ...user , id:makeUUID()};
     newUser.password = encryptStr(newUser.password);
     USERS.push(newUser);
     return { id: newUser.id };
