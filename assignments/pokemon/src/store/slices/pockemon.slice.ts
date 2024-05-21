@@ -1,18 +1,21 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
+import type { Pockemon, PockemonCard } from '../../types'
 
-type Pockemon = {
-    id: string
-    name: string
-    picture_url: string
-    type: string
-}
+type PockemonState = {
+    pockemonList: Pockemon[]
+    currentPockemon: Pockemon | null
+    cardsList: PockemonCard[]
+  }
 
-const counterSlice = createSlice({
-  name: 'pockemon',
-  initialState: {
+ const initialState: PockemonState = {
     pockemonList: [],
-    currentPockemon: undefined
-  },
+    currentPockemon: null,    
+    cardsList: []
+  }
+
+const pockemonSlice = createSlice({
+  name: 'pockemon',
+  initialState,
   reducers: {
     incremented: state => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -27,11 +30,12 @@ const counterSlice = createSlice({
   }
 })
 
-export const { incremented, decremented } = counterSlice.actions
+export const { incremented, decremented } = pockemonSlice.actions
+export default pockemonSlice.reducer
 
 
 const store = configureStore({
-    reducer: counterSlice.reducer
+    reducer: pockemonSlice.reducer
   })
   
   // Can still subscribe to the store
