@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pockemonReducer from './slices/pockemon.slice';
+import PokemonReducer from './slices/pokemon.slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 const store = configureStore({
   reducer: {
-    pockemon: pockemonReducer,
+    Pokemon: PokemonReducer,
   },
 });
 

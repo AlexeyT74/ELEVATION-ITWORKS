@@ -1,14 +1,14 @@
-export type PockemonCard = {
+export type PokemonCardType = {
     id: string
     name: string
     picture_url: string
     type: string
     HP: number
-    speed: number
-    attack: number
+    height: number
+    weight: number
 }
 
-export type Pockemon = {
+export type PokemonURLData = {
     name:string
     id: string
     url: string
@@ -30,7 +30,7 @@ export type PokemonFull = {
     order:                    number;
     past_abilities:           any[];
     past_types:               any[];
-    species:                  Species;
+    species:                  Species;                        
     sprites:                  Sprites;
     stats:                    Stat[];
     types:                    Type[];
