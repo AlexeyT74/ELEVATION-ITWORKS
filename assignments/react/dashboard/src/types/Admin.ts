@@ -1,5 +1,3 @@
-// type Admin with username,password
-
 // type admin try to login
 export type Admin = {
   username: string;
@@ -7,4 +5,8 @@ export type Admin = {
   id: string;
 };
 
+// type admin succeddfully logged in
 export type AdminLogin = Omit<Admin, 'id'>;
+
+// type Admin with username,password
+export type AdminUser = Omit<Admin, 'password'>;
